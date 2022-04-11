@@ -5,6 +5,7 @@ services:
   - docker
 
 before_install:
+  - curl https://sdk.cloud.google.com | bash > /dev/null
   - docker build -t cygnetops/react-test -f ./client/Dockerfile.dev ./client
 
 script:
@@ -25,11 +26,11 @@ after_success:
 
 deploy:
   provider: elasticbeanstalk
-  region: 'us-east-1'
-  app: 'multi-docker'
-  env: 'MultiDocker-env'
-  bucket_name: 'elasticbeanstalk-us-east-1-923445559289'
-  bucket_path: 'docker-multi'
+  region: "us-east-1"
+  app: "multi-docker"
+  env: "MultiDocker-env"
+  bucket_name: "elasticbeanstalk-us-east-1-923445559289"
+  bucket_path: "docker-multi"
   on:
     branch: master
   access_key_id: $AWS_ACCESS_KEY
